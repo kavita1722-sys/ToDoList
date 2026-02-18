@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block title %}Login - To Do List Manager{% endblock %}
+
+{% block content %}
+<div class="login-container">
+    <div class="login-box">
+        <div class="login-header">
+            <h1>📋 Welcome to To Do Manager</h1>
+            <p>Manage your tasks efficiently</p>
+        </div>
+
+        {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">
+                        <span>{{ message }}</span>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <form method="post" class="login-form">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label for="username">
+                    <span class="label-icon">👤</span>
+                    Username
+                </label>
+                <input 
+                    type="text" 
+                    id="username" 
+                    name="username" 
+                    class="form-control" 
+                    placeholder="Enter your username"
+                    required
+                    autofocus
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="password">
+                    <span class="label-icon">🔒</span>
+                    Password
+                </label>
+                <input 
+                    type="password" 
+                    id="password" 
+                    name="password" 
+                    class="form-control" 
+                    placeholder="Enter your password"
+                    required
+                >
+            </div>
+
+            <button type="submit" class="btn btn-login">🔓 Login</button>
+        </form>
+
+        <div class="login-footer">
+            <p>Don't have an account? <a href="#" class="link-signup">Contact administrator</a></p>
+            <div class="demo-info">
+                <p class="info-title">Demo Credentials:</p>
+                <p><strong>Username:</strong> admin</p>
+                <p><strong>Password:</strong> admin</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

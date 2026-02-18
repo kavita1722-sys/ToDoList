@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Home - To Do List Manager{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="welcome-section">
+        <h1>{{ welcome_message }}</h1>
+        <p class="subtitle">Organize your tasks efficiently and boost productivity</p>
+    </div>
+
+    <div class="stats-grid">
+        <div class="stat-card total">
+            <div class="stat-number">{{ total_tasks }}</div>
+            <div class="stat-label">Total Tasks</div>
+        </div>
+        <div class="stat-card completed">
+            <div class="stat-number">{{ completed_tasks }}</div>
+            <div class="stat-label">Completed</div>
+        </div>
+        <div class="stat-card pending">
+            <div class="stat-number">{{ pending_tasks }}</div>
+            <div class="stat-label">Pending</div>
+        </div>
+        <div class="stat-card categories">
+            <div class="stat-number">{{ categories_count }}</div>
+            <div class="stat-label">Categories</div>
+        </div>
+    </div>
+
+    <div class="action-buttons">
+        <a href="{% url 'add_task' %}" class="btn btn-primary">+ Add New Task</a>
+        <a href="{% url 'task_list' %}" class="btn btn-secondary">View All Tasks</a>
+    </div>
+</div>
+{% endblock %}

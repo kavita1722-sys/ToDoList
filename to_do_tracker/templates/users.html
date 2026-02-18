@@ -1,0 +1,42 @@
+
+
+{% extends "base.html" %}
+
+{% block title %}Users - To Do List Manager{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="page-header">
+        <h1>👥 Users</h1>
+    </div>
+
+    {% if users %}
+    <table class="user-table" role="table">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td data-label="Username"><strong>{{ user.username }}</strong></td>
+                <td data-label="Email">{{ user.email|default:"—" }}</td>
+                <td data-label="First Name">{{ user.first_name|default:"—" }}</td>
+                <td data-label="Last Name">{{ user.last_name|default:"—" }}</td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="4" style="text-align: center; padding: 20px;">No users found</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <div class="empty-state">
+        <p>No users found.</p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}Tasks - To Do List Manager{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="page-header">
+        <h1>📋 All Tasks</h1>
+        <a href="{% url 'add_task' %}" class="btn btn-primary">+ Add Task</a>
+    </div>
+
+    {% if tasks %}
+    <div class="tasks-grid">
+        {% for task in tasks %}
+        <div class="task-card {% if task.completed %}completed{% endif %} priority-{{ task.priority }}">
+            <div class="task-header">
+                <h3>{{ task.title }}</h3>
+                <span class="priority-badge priority-{{ task.priority }}">{{ task.get_priority_display }}</span>
+            </div>
+            {% if task.description %}
+            <p class="task-description">{{ task.description }}</p>
+            {% endif %}
+            <div class="task-meta">
+                {% if task.due_date %}
+                <span class="due-date">📅 {{ task.due_date|date:"M d, Y" }}</span>
+                {% endif %}
+            </div>
+            <div class="task-status">
+                {% if task.completed %}
+                    <span class="status-badge completed">✓ Completed</span>
+                {% else %}
+                    <span class="status-badge pending">⏳ Pending</span>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="empty-state">
+        <p>No tasks found yet.</p>
+        <p><a href="{% url 'add_task' %}">Create your first task now!</a></p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

@@ -93,7 +93,7 @@ def add_user(request):
             User.objects.create_user(username=username, email=email, password=password)
             messages.success(request, 'User created successfully.')
             return redirect('users_list')
-    return render(request, 'add_user.html')
+    return render(request, 'add_users.html')
 
 @login_required(login_url='login')
 def delete_user(request, user_id):
